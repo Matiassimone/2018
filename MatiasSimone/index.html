@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TP4 - Matias Simone</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>TP4 - Vue.JS</h1>
+    </header>
+
+    <main id="app">
+        <h3>Hay {{total}} persona/s en tu listado.</h3>
+        <p>Nombre</p>
+        <input type="text" v-model="persona.nombre" placeholder="Matias">
+        <p>Apellido</p>
+        <input type="text" v-model="persona.apellido" placeholder="Simone">
+        <p>Edad</p>
+        <input type="number" v-model.number="persona.edad">
+        <p>Sexo</p>
+        <select v-model="persona.sexo">
+            <option disabled value=""></option>
+            <option>Masculino</option>
+            <option>Femenino</option>
+            <option>Otros</option>
+        </select>
+
+        <button @click="agregar()">Agregar</button>
+
+        <p>Opciones de listado</p>
+        <select v-model="typeListar">
+            <option disabled value="">Selecciones un Filtro</option>
+            <option>Sin filtro</option>
+            <option value="Masculino">Filtrar solo Masculinos</option>
+            <option value="Femenino">Filtrar solo Femeninos</option>
+            <option value="Otros">Filtrar solo Otros</option>
+        </select>
+        
+        <ul>
+            <li v-for="(persona, index) in listar" :key="index">
+                <a @click="borrarPersona(persona.id)"> {{ persona.nombre }} {{ persona.apellido }} - {{ persona.sexo}} - {{persona.edad}}</a>
+            </li>
+        </ul>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    new Vue({
+        el: "#app",
+        data: {
+            typeListar: "Sin filtro",
+            idInicial: 0,
+            personas: [],
+            persona: {
+                nombre: "",
+                apellido: "",
+                sexo: "",
+                edad: ""
+            }
+        },
+        computed: {
+            total() {
+                return this.personas.length;
+            },
+            listar: function() {
+
+                let personasFiltradas;
+
+                if (this.typeListar == "Sin filtro") {
+
+                    personasFiltradas = this.personas
+
+                } else {
+
+                    personasFiltradas = this.personas.filter(persona => persona.sexo === this.typeListar);
+                }
+
+                return personasFiltradas
+            }
+        },
+        methods: {
+            agregar() {
+                if (this.persona.nombre == "" || this.persona.apellido == "" || this.persona.edad == "" || this.persona.sexo == "") {
+                    alert("ERROR hay campos vacios en el formulario.");
+                } else {
+                    this.personas.push({
+                        id: this.idInicial++,
+                        nombre: this.persona.nombre,
+                        apellido: this.persona.apellido,
+                        edad: this.persona.edad,
+                        sexo: this.persona.sexo
+                    });
+
+                    this.persona.nombre = "";
+                    this.persona.apellido = "";
+                    this.persona.edad = "";
+                    this.persona.sexo = "";
+                }
+            },
+            borrarPersona(id) {
+                this.personas = this.personas.filter(persona => persona.id !== id);
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>
