@@ -1,0 +1,1 @@
+ <h3>Hay {{total}} persona/s en tu listado.</h3>
