@@ -1,28 +1,46 @@
 <template>
-    <div>
-        <ul>
-            <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-        </ul>
+    <el-row :gutter="10">
+         
+        <el-alert v-for="(error, index) in errors" :key="index" title="Alert : " type="warning" show-icon> 
+            {{error}}
+        </el-alert>
+        <br><br>
 
-        <label for="nombre">Nombre </label>
-        <input type="text" v-model="persona.nombre" placeholder="Introduzca su Nombre." name="nombre">
-        <br><br>
-        <label for="apellido">Apellido </label>
-        <input type="text" v-model="persona.apellido" placeholder="Introduzca su Apellido." name="apellido">
-        <br><br>
-        <label for="edad">Edad </label>
-        <input type="number" v-model.number="persona.edad" name="edad" min="0">
-        <br><br>
-        <label for="sexo">Sexo </label>
-        <select v-model="persona.sexo" name="sexo">
-            <option disabled></option>
-            <option value="Masculino">Masculino</option>
-            <option value="Femenino">Femenino</option>
-            <option value="Otro">Otro</option>
-        </select>
-        <br><br>
-        <button @click="checkForm()">Agregar usuario</button>
-    </div>
+        <el-form ref="form" :model="persona" label-width="120px">
+            <el-col :xs="10" :sm="10" :md="10" :lg="10" :xl="10">
+                <el-form-item label="Nombre">
+                    <el-input v-model="persona.nombre" placeholder="Introduzca su Nombre." type="text"></el-input>
+                </el-form-item>
+            </el-col>
+            <el-col :xs="10" :sm="10" :md="10" :lg="10" :xl="10">
+                <el-form-item label="Apellido">
+                    <el-input v-model="persona.apellido" placeholder="Introduzca su Apellido." type="text"></el-input>
+                </el-form-item>
+            </el-col>
+            <el-col :xs="10" :sm="10" :md="10" :lg="10" :xl="10">
+                <el-form-item label="Edad">
+                    <el-input-number v-model.number="persona.edad" type="number" min = 0></el-input-number>
+                </el-form-item>
+            </el-col>
+            <el-col :xs="10" :sm="10" :md="10" :lg="10" :xl="10">
+                <el-form-item label="Sexo">
+                    <el-select v-model="persona.sexo" name="filterMenu">
+                        <el-option 
+                            v-for="item in options"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value"
+                            :disabled="item.disabled">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+            </el-col>
+            <br><br>
+            <el-col :xs="25" :sm="25" :md="25" :lg="25" :xl="25">
+                <el-button @click="checkForm()">Agregar usuario</el-button>
+            </el-col>
+        </el-form>
+    </el-row>
 </template>
 
 <script>
@@ -46,9 +64,28 @@ import PersonService from '@/services/personService'
                     apellido: "",
                     sexo: "",
                     edad: 0
-                }
+                },
+
+                typeList: "",
+
+                options: [{
+                    value: '',
+                    label: 'Seleccione el Sexo',
+                    disabled: true
+                }, {
+                    value: 'Masculino',
+                    label: 'Masculino'
+                }, {
+                    value: 'Femenino',
+                    label: 'Femenino'
+                }, {
+                    value: 'Otro',
+                    label: 'Otro'
+                }],
+
             }
         },
+
         methods : {
             checkForm : function () {
                 if (this.persona.nombre && this.persona.apellido && this.persona.sexo && this.persona.edad && this.persona.edad<150 && this.persona.edad>0) {

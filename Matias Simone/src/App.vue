@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/users">List Users</router-link> |
-      <router-link to="/createUser">Create User</router-link> |
-      <router-link to="/deleteAndMod">Borrar y Modificar</router-link>
-    </div>
+    <el-row type="flex" class="row-bg" justify="center">
+      <el-col :span="24">
+        <el-menu :default-active="true" mode="horizontal" id="nav" router="true" background-color="#0F0511" text-color="#fff" active-text-color="#42b883">
+          <el-row type="flex" class="row-bg" justify="center">
+            <el-menu-item index="/">Home</el-menu-item> 
+            <el-menu-item index="/users">List Users</el-menu-item>  
+            <el-menu-item index="/createUser">Create User</el-menu-item>  
+            <el-menu-item index="/deleteAndMod">Borrar y Modificar</el-menu-item> 
+          </el-row>
+        </el-menu>
+      </el-col>
+    </el-row>
     <router-view/>
   </div>
 </template>
@@ -13,10 +19,11 @@
 <script>
 export default {
   name: 'app',
+
   data() {
     return {
-      
-    }
+      activeIndex: true
+    };
   }
 }
 </script>
@@ -24,22 +31,27 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  color : #0F0511;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+}
+
+body{
+  margin: 0px;
+}
+
+#nav a{
+  text-decoration: none;
 }
 #nav {
-  padding: 30px;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+html {
+  background-color: #F2F9F8;
 }
 </style>

@@ -1,11 +1,13 @@
 <template>
-    <div id="createUser">
-        <h1>Create User</h1>
+    <el-container id="createUser">
+        <el-header><h1>Create User</h1></el-header>
+        <el-main>
         <formUser></formUser>
-    </div>
+        </el-main>
+    </el-container>
 </template>
-<script>
 
+<script>
 import formUser from '@/components/ms-form.vue'
 
 export default {

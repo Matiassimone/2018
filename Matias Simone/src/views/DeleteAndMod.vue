@@ -1,11 +1,13 @@
 <template>
-    <div id="deleteAndMod">
-        <h1>Borrar y Modificar</h1>
+    <el-container id="deleteAndMod">
+        <el-header><h1>Borrar y Modificar</h1></el-header>
+        <el-main>
         <editAndDelete></editAndDelete>
-    </div>
+        </el-main>
+    </el-container>
 </template>
-<script>
 
+<script>
 import editAndDelete from '@/components/ms-editAndDeleteUserCard.vue'
 
 export default {
