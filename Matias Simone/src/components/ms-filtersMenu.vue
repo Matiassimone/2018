@@ -27,7 +27,7 @@ export default {
             typeList: "",
 
             options: [{
-                value: '',
+                value: ' ',
                 label: 'Seleccione un Filtro',
                 disabled: true
             }, {

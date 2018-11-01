@@ -55,7 +55,7 @@
                             <el-row :gutter="10">
                                 <el-col :xs="22" :sm="22" :md="22" :lg="22" :xl="22">
                                     <el-form-item label="Edad">
-                                        <el-input v-model.number="personaForm.edad" type="number" min="0"></el-input>
+                                        <el-input-number v-model.number="personaForm.edad" type="number" :min="min"></el-input-number>
                                     </el-form-item>
                                 </el-col>
                             </el-row>
@@ -101,6 +101,7 @@ export default {
 
   data() {
     return {
+      min : 0,
       personas: [],
       errors: [],
       personaForm: {

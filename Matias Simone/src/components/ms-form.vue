@@ -19,7 +19,7 @@
             </el-col>
             <el-col :xs="10" :sm="10" :md="10" :lg="10" :xl="10">
                 <el-form-item label="Edad">
-                    <el-input-number v-model.number="persona.edad" type="number" min = 0></el-input-number>
+                    <el-input-number v-model.number="persona.edad" type="number" :min = "min"></el-input-number>
                 </el-form-item>
             </el-col>
             <el-col :xs="10" :sm="10" :md="10" :lg="10" :xl="10">
@@ -52,6 +52,7 @@ import PersonService from '@/services/personService'
 
         data() {
             return{
+                min : 0,
                 errors: [],
                 persona: {
                     nombre: "",

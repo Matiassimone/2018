@@ -2,7 +2,7 @@
   <div id="app">
     <el-row type="flex" class="row-bg" justify="center">
       <el-col :span="24">
-        <el-menu :default-active="true" mode="horizontal" id="nav" router="true" background-color="#0F0511" text-color="#fff" active-text-color="#42b883">
+        <el-menu default-active="true" mode="horizontal" id="nav" :router="router" background-color="#0F0511" text-color="#fff" active-text-color="#42b883">
           <el-row type="flex" class="row-bg" justify="center">
             <el-menu-item index="/">Home</el-menu-item> 
             <el-menu-item index="/users">List Users</el-menu-item>  
@@ -22,7 +22,8 @@ export default {
 
   data() {
     return {
-      activeIndex: true
+      activeIndex: true,
+      router: true
     };
   }
 }
